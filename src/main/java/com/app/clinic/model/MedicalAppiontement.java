@@ -23,6 +23,10 @@ public class MedicalAppiontement {
 	private Date appiontementDate;
 	private String isActive;
 	private String reason;
+	private Employee employee;
+	private Date createdDate;
+	private Date updatedDate;
+	private BigDecimal updatedBy;
 	
 	@Id
 	@Column(name="APPIONTEMENT_ID")
@@ -71,8 +75,39 @@ public class MedicalAppiontement {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="EMPLOYEE_ID")
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	@Column(name="CREATED_DATE")
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	@Column(name="UPDATED_DATE")
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	@Column(name="UPDATED_BY")
+	public BigDecimal getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(BigDecimal updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	
 	public MedicalAppiontement(BigDecimal appiontementId, Patient patient, Doctor doctor, Date appiontementDate,
-			String isActive, String reason) {
+			String isActive, String reason, Employee employee, Date createdDate, Date updatedDate,
+			BigDecimal updatedBy) {
 		super();
 		this.appiontementId = appiontementId;
 		this.patient = patient;
@@ -80,6 +115,10 @@ public class MedicalAppiontement {
 		this.appiontementDate = appiontementDate;
 		this.isActive = isActive;
 		this.reason = reason;
+		this.employee = employee;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.updatedBy = updatedBy;
 	}
 	public MedicalAppiontement() {
 		super();
